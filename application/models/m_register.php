@@ -10,7 +10,7 @@ class M_register extends CI_Model {
     $this->load->library('form_validation');
 
     $this->form_validation->set_rules('no_KTP', 'No. KTP', 'required|integer|exact_length[16]');
-    $this->form_validation->set_rules('telp', 'Telepon', 'required|integer|min_length[11]|max_length[13]');
+
     $this->form_validation->set_rules('nama', 'Nama', 'required|alpha_numeric_spaces');
 
     if($this->form_validation->run()){
@@ -33,6 +33,7 @@ class M_register extends CI_Model {
   }
 
 	public function add(){
+    date_default_timezone_set('Asia/Jakarta');
     $data = array(
         'no_KTP'      => $this->input->post('no_KTP'),
         'nama'        => $this->input->post('nama'),
@@ -41,7 +42,7 @@ class M_register extends CI_Model {
         'otoritas'    => $this->input->post('otoritas'),
         'jenis_k'     => $this->input->post('jenis_k'),
         'nomor_rumah' => $this->input->post('no_rmh'),
-        'create_when' => date('Y-m-d')
+        'create_when' => date("Y-m-d", strtotime('now'))
     );
     $this->db->insert('user',$data);
 

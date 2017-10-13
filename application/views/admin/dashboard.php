@@ -1,3 +1,7 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+if($this->session->userdata('status')=='login' && $this->session->userdata('otoritas')<3){ ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -243,82 +247,45 @@
                             </div>
                         </div>
                     </div>
-                    <!-- /.panel -->
-                    <!-- <div class="row">
-                        <div class="col-lg-12">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <i class="fa fa-bar-chart-o fa-fw"></i> Jumlah Warga
-                                    <div class="pull-right">
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
-                                                Actions
-                                                <span class="caret"></span>
-                                            </button>
-                                            <ul class="dropdown-menu pull-right" role="menu">
-                                                <li><a href="#">Action</a>
-                                                </li>
-                                                <li><a href="#">Another action</a>
-                                                </li>
-                                                <li><a href="#">Something else here</a>
-                                                </li>
-                                                <li class="divider"></li>
-                                                <li><a href="#">Separated link</a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /.panel-heading -->
-                                <div >
-                                    <div id="morris-area-chart"></div>
-                                </div> -->
-                    <!-- /.panel -->
+                    <?php
+                        foreach($data as $data){
+                            $bulan[] = $data->bulan;
+                            $jumlah[] = (float) $data->jumlah;
+                        }
+                    ?>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                          <i class="fa fa-bar-chart-o fa-fw"></i> Grafik Jumlah User
+                            <canvas id="canvas" width="650" height="280"></canvas>
+                            <!-- <canvas id="canvas" width="700" height="280"></canvas> -->
+                            <script type="text/javascript" src="<?php echo base_url().'assets/chartjs/chart.min.js'?>"></script>
+                            <script>
 
+                                    var lineChartData = {
+                                        labels : <?php echo json_encode($bulan);?>,
+                                        datasets : [
 
+                                            {
+                                                fillColor: "rgba(60,141,188,0.9)",
+                                                strokeColor: "rgba(60,141,188,0.8)",
+                                                pointColor: "#3b8bba",
+                                                pointStrokeColor: "#fff",
+                                                pointHighlightFill: "#fff",
+                                                pointHighlightStroke: "rgba(152,235,239,1)",
+                                                data : <?php echo json_encode($jumlah);?>
+                                            }
+
+                                        ]
+
+                                    }
+
+                                var myLine = new Chart(document.getElementById("canvas").getContext("2d")).Line(lineChartData);
+
+                            </script>
+                          </div>
+                        </div>
                 </div>
-                <style>
- #chart{
-   z-index:-10;}
-</style>
-<body>
- <div id="chart">
-</div>
-<script src="&lt;?php echo base_url();?&gt;asset/highcharts/jquery.min.js" type="text/javascript"></script>
-<script src="&lt;?php echo base_url();?&gt;asset/highcharts/highcharts.js" type="text/javascript"></script>
-<script src="&lt;?php echo base_url();?&gt;asset/highcharts/modules/exporting.js" type="text/javascript"></script>
-<script src="&lt;?php echo base_url();?&gt;asset/highcharts/modules/offline-exporting.js" type="text/javascript"></script>
-<script type="text/javascript">
-jQuery(function(){
- new Highcharts.Chart({
-  chart: {
-   renderTo: 'chart',
-   type: 'line',
-  },
-  title: {
-   text: 'Grafik Statistik pengunjung',
-   x: -20
-  },
-  subtitle: {
-   text: 'Count visitor',
-   x: -20
-  },
-  xAxis: {
-   categories: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun',
-                    'Jul', 'Ags', 'Sep', 'Okt', 'Nov', 'Des']
-  },
-  yAxis: {
-   title: {
-    text: 'Total pengunjung'
-   }
-  },
-  series: [{
-   name: 'Data dalam Bulan',
-   data: <?php echo json_encode($grafik); ?>
-  }]
- });
-});
-</script>
+
 
 
                 <!-- /.col-lg-8 -->
@@ -352,3 +319,4 @@ jQuery(function(){
 </body>
 
 </html>
+<?php } else redirect('home'); ?>
