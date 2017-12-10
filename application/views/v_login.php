@@ -1,6 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-?>
+
+if($this->session->userdata('status')!='login'){ ?>
 
 <!DOCTYPE html>
 <html>
@@ -10,15 +11,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <meta charset="utf-8">
     <title>Login</title>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/login/styles.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/login/styles_login.css">
 </head>
 
-<body >
+<body>
     <div  class="container" id="registration-form" >
         <div class="image"></div>
         <div class="frm">
             <h1>Masuk</h1>
-						<h5><?php echo $error; ?></h5>
+						<p><?php echo $error; ?></p>
             <form action="<?php echo base_url(). 'login/action_check'; ?>" method="post">
                 <div class="form-group">
                     <label for="username">KTP atau Username:</label>
@@ -37,3 +38,4 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 </body>
 
 </html>
+<?php } else redirect('home');?>

@@ -13,4 +13,9 @@ class Home extends CI_Controller {
     $data['user'] = $this->m_home->ambil('laporan');
 		$this->load->view('v_home',$data);
 	}
+
+  public function detail_laporan(){
+        $data['details'] = $this->m_home->getLaporan('laporan',$this->uri->segment(3));
+        $this->load->view('v_detail',$data);
+  }
 }
