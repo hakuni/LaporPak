@@ -11,10 +11,30 @@
 
 <body>
     <div class="container" id="registration-form">
-        <div class="image"></div>
+        <div class="image"> </div>
         <div class="frm">
             <h1>Tambah User</h1>
             <form>
+                <div class="form-group">
+                    <label for="pwd">No Rumah:</label>
+                    <input name="no rumah" required type="text" class="form-control"  placeholder="Masukan Alamat">
+                </div>
+            <div class="form-group">
+                    <label for="username">Jenis akun:</label>
+                    <select "required">
+                    <option value="">Pemilik Rumah</option>
+                    <option value="">Penghuni</option>
+                    <option value="">Ketua RT</option>
+                    </select>
+            </div>
+            <div class="form-group">
+                    <label for="username">Jenis Kelamin:</label>
+                    <select "required">
+                    <option value="">Pilih Jenis Kelamin</option>
+                    <option value="L">Laki-laki</option>
+                    <option value="P">Perempuan</option>
+                    </select>
+            </div>
                 <div class="form-group">
                     <label for="username">Nomor KTP:</label>
                     <input type="text" class="form-control" id="username" placeholder="Masukan nomor KTP" name="no_KTP" maxlength="16" required>
