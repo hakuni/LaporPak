@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title>Post</title>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+<body>
+    <div class="container" id="registration-form">
+        <div class="frm">
+            <h1>Buat Laporan</h1>
+            <form class="container" name="poster" action="modul/uploadsurat.php" method="POST" enctype="multipart/form-data">
+            			<div class="w3-section w3-center">
+								<br><label><b>Tambahkan Foto</b></label>
+								<p> Upload photo, max 1 MB </p>
+								<input class="w3-input w3-border" type="file" placeholder="Upload your photo, max 1 MB"required>
+							</div>
+							<div class="w3-row w3-center">
+								<br><button class="w3-button w3-round-xlarge w3-black" type="submit" name="action">upload</button>
+							</div><br>
+						<div class="w3-section"><br/>
+						<h3 ">Topik <b>Laporan</b></h3>
+						<input class="col-md-7" name="kategori" required>
+						<br/>
+						<br/>
+							<textarea id="isiartikel" class="col-md-7" name="isipost" placeholder="Isi Laporan"></textarea><br/>
+						<br/>
+						</div>
+						<br/>
+						<button class="btn btn btn-primary btn-xl col-md-7" type="submit">KIRIM</button>
+						<br/>
+				</div>
+				</form>
+              </div>
+    </div>
+</body>
+
+</html>

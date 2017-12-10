@@ -6,7 +6,11 @@ class M_list extends CI_Model {
 		parent::__construct();
   }
 
-  function ambil($table,$data){
-    return $this->db->get_where($table,$data);
+  function jumlah_data(){
+    return $this->db->get('laporan')->num_rows();
+  }
+
+  function data($number, $offset){
+    return $query = $this->db->order_by('tanggal','DESC')->get('laporan',$number,$offset)->result();
   }
 }

@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+?>
 
-if($this->session->userdata('status')=='login'){ ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -10,7 +10,7 @@ if($this->session->userdata('status')=='login'){ ?>
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Profile</title>
+	<title>Flew &mdash; laporan</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="Free HTML5 Website Template by FreeHTML5.co" />
 	<meta name="keywords" content="free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
@@ -67,8 +67,6 @@ if($this->session->userdata('status')=='login'){ ?>
 	</head>
 	<body>
 
-
-	<div id="fh5co-page">
 	<header id="fh5co-header" role="banner">
 		<div class="container">
 			<div class="header-inner">
@@ -89,107 +87,92 @@ if($this->session->userdata('status')=='login'){ ?>
 			</div>
 		</div>
 	</header>
+		<div class="fh5co-cta" style="background-image: url(<?php echo base_url()?>assets/home/images/slide_1.jpg);">
+			<div class="overlay"></div>
+			<div class="container">
+				<div class="col-md-12 text-center animate-box">
+					<h3>Ingin melakukan laporan?</h3>
+					<p><a href="<?php echo base_url()?>lapor" class="btn btn-primary btn-outline">Lapor</a></p>
+				</div>
+			</div>
+		</div>
+		<div id="fh5co-work-section" class="fh5co-light-grey-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 col-md-offset-3 text-center fh5co-heading animate-box">
+					<h2>Laporan Warga</h2>
+				</div>
+			</div>
+			<?php if(!$lapor){ ?>
+				<div class="col-md-6 col-md-offset-3 text-center fh5co-heading animate-box">
+					<h3>Belum ada laporan warga</h3>
+				</div>
+			<?php } else
+							foreach($lapor as $data){  ?>
+			<div class="row">
+				<div class="col-md-4 animate-box">
+					<a href="<?php echo base_url()?>detail/index/<?php echo $data->id_laporan;?>" class="item-grid">
+						<div class="image" style="background-image: url(<?php echo base_url();?>gambar/<?php echo $data->foto;?>)"></div>
+						<div class="v-align">
+							<div class="v-align-middle">
+								<h3 class="title"><?php echo $data->topik; ?></h3>
+								<h5 class="date"><span><?php echo $data->tanggal; ?></span></h5>
+								<h5><?php echo substr($data->laporan,0,50)." ..." ?></h5>
+								<h5 align="right"><b><?php echo "Read More"?></b></h5>
+							</div>
+						</div>
+					</a>
+				</div>
+			<?php } ?>
+			<div class="col-md-12 text-center animate-box">
+				<h3><?php echo $this->pagination->create_links(); ?></h3>
+			</div>
+		</div>
+	</div>
 
-	<!-- tabs -->
-    <br />
-    <br />
+	<footer id="fh5co-footer" role="contentinfo">
 
-    <div class="container">
-      <ul class="nav nav-tabs nav-justified text-center">
-            <li class="active"><a data-toggle="tab" href="#upcoming">PROFIL</a></li>
-            <li><a data-toggle="tab" href="#past">LAPORANKU</a></li>
-            <li><a data-toggle="tab" href="#bookmark">DAFTAR PENGHUNI</a></li>
-      </ul>
+		<div class="container">
+			<div class="col-md-3 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0">
+				<h3>About Us</h3>
+				<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
+				<p><a href="#" class="btn btn-primary btn-outline with-arrow btn-sm">Join Us <i class="icon-arrow-right"></i></a></p>
+			</div>
+			<div class="col-md-6 col-md-push-1 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0">
+				<h3>Our Services</h3>
+				<ul class="float">
+					<li><a href="#">Web Design</a></li>
+					<li><a href="#">Branding &amp; Identity</a></li>
+					<li><a href="#">Free HTML5</a></li>
+					<li><a href="#">HandCrafted Templates</a></li>
+				</ul>
+				<ul class="float">
+					<li><a href="#">Free Bootstrap Template</a></li>
+					<li><a href="#">Free HTML5 Template</a></li>
+					<li><a href="#">Free HTML5 &amp; CSS3 Template</a></li>
+					<li><a href="#">HandCrafted Templates</a></li>
+				</ul>
 
-      <div class="tab-content text-center">
-        <div id="upcoming" class="tab-pane fade in active">
-                     <!-- Rincian Profil -->
-              <div class="container">
-                <div class="row">
-                    <div class="col-lg-4">
-                        <div id="General" class="w3-container city" style="display: block;">
-														<div class="w3-half w3-container xlarge">
-															<br><table>
-																<thead>
-																	<form action=""></form>
-																		<tr>
-																			<th data-field="id">Profile Info</th>
-																			<th data-field="separator"></th>
-																			<th data-field="name"></th>
-																		</tr>
-																</thead>
-																<?php foreach($user as $data){ ?>
-																<h2><tbody>
-																	<tr>
-																		<td>Nama</td>
-																		<td>:</td>
-																		<td><?php echo $data->nama;?></td>
-																	</tr>
-																	<tr>
-																		<td>No KTP</td>
-																		<td>:</td>
-																		<td><?php echo $data->no_KTP;?></td>
-																	</tr>
-																	<tr>
-																		<td>Username</td>
-																		<td>:</td>
-																		<td><?php echo $data->username;?></td>
-																	</tr>
-																	<tr>
-																		<td>Alamat</td>
-																		<td>:</td>
-																		<td><?php foreach($rumah as $rmh){ echo $rmh->alamat;}?></td>
-																	</tr>
-																	<tr>
-																		<td>No Rumah</td>
-																		<td>:</td>
-																		<td><?php echo $data->nomor_rumah;?></td>
-																	</tr>
-																	<tr>
-																		<td>Telepon</td>
-																		<td>:</td>
-																		<td><?php echo $data->telepon;?></td>
-																	</tr>
+			</div>
 
-																	<tr>
-																		<td>Jenis Kelamin</td>
-																		<td>:</td>
-																		<td><?php echo $data->jenis_k;?></td>
-																	</tr>
-																	<tr>
-																		<td>Agama</td>
-																		<td>:</td>
-																		<td><?php echo $data->agama;?></td>
-																	</tr>
-																<?php } ?>
-																	<tr>
-																		<td></td>
-																		<td></td>
-																		<td><a href="<?php echo base_url();?>profile/edit_profile"><button onclick="document.getElementById('genmodal').style.display='block'" class="submit btn btn-primary btn-xl">Ubah data</button></a></td>
-																	</tr>
-																</tbody></h2>
-															</table>
-														</div>
-													</div>
-                      </div>
-                </div>
-              </div>
-        </div>
+			<div class="col-md-2 col-md-push-1 col-sm-12 col-sm-push-0 col-xs-12 col-xs-push-0">
+				<h3>Follow Us</h3>
+				<ul class="fh5co-social">
+					<li><a href="#"><i class="icon-twitter"></i></a></li>
+					<li><a href="#"><i class="icon-facebook"></i></a></li>
+					<li><a href="#"><i class="icon-google-plus"></i></a></li>
+					<li><a href="#"><i class="icon-instagram"></i></a></li>
+				</ul>
+			</div>
 
-        <div id="bookmark" class="tab-pane fade">
-          <br />
 
-          <td><a href="register"><button onclick="document.getElementById('genmodal').style.display='block'" class="submit btn btn-primary btn-xl">Tambahkan Penghuni</button></a></td>
-        </div>
+			<div class="col-md-12 fh5co-copyright text-center">
+				<p>&copy; 2016 Free HTML5 template. All Rights Reserved. <span>Designed with <i class="icon-heart"></i> by <a href="http://freehtml5.co/" target="_blank">FreeHTML5.co</a> Demo Images by <a href="http://unsplash.com/" target="_blank">Unsplash</a></span></p>
+			</div>
 
-        <div id="past" class="tab-pane fade">
-          <br />
-          <p>Anda belum memiliki laporan</p>
-
-        </div>
-      </div>
-    </div>
-
+		</div>
+	</footer>
+	</div>
 
 
 	<!-- jQuery -->
@@ -210,4 +193,3 @@ if($this->session->userdata('status')=='login'){ ?>
 
 	</body>
 </html>
-<?php } else redirect('login');?>

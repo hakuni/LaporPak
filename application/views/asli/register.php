@@ -53,3 +53,31 @@
 	</form>
 </body>
 </html>
+
+
+
+<!--
+	profil
+	<div id="past" class="tab-pane fade">
+	<br/>
+	<?php if($laporan->num_rows()==0){?>
+	<p>Anda belum memiliki laporan</p>
+	<?php }
+	else {
+		foreach($laporan as $data){ ?>
+			<div class="row">
+				<div class="col-md-6 col-sm-6 animate-box">
+				<a href="#" class="item-grid">
+					<div class="image" style="background-image: url(<?php echo base_url();?>gambar/<?php echo $data->foto;?>)"></div>
+					<div class="v-align">
+						<div class="v-align-middle">
+							<h3 class="title"><?php echo $data->topik; ?></h3>
+							<h5 class="date"><span><?php echo $data->tanggal; ?></span>
+							<p><?php echo $data->laporan; ?></p>
+						</div>
+					</div>
+				</a>
+			</div>
+		</div>
+	<?php } }?>
+</div> -->

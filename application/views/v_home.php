@@ -77,14 +77,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<h1><a href="<?php echo base_url()?>">LaporPak</a></h1>
 				<nav role="navigation">
 					<ul>
-						<li><a href="#">Laporan</a></li>
+						<li><a href="<?php echo base_url()?>list_laporan">Laporan</a></li>
 						<li><a href="#">About</a></li>
 						<li><a href="#">Contact</a></li>
 						<?php if($this->session->userdata('status') != "login"){ ?>
-						<li class="cta"><a href="login">Login</a></li>
+						<li class="cta"><a href="<?php echo base_url()?>login">Login</a></li>
 						<?php }else{ ?>
-						<li><a href="profile">Profil</a></li>
-						<li class="cta"><a href="login/logout">Logout</a></li>
+						<li><a href="<?php echo base_url()?>profile">Profil</a></li>
+						<li class="cta"><a href="<?php echo base_url()?>login/logout">Logout</a></li>
 						<?php	} ?>
 					</ul>
 				</nav>
@@ -113,8 +113,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		   		<div class="container">
 		   			<div class="col-md-10 col-md-offset-1 text-center js-fullheight slider-text">
 		   				<div class="slider-text-inner">
-		   					<center><h2>Sistem Informasi Desa</h2>
-		   					<p><a href="lapor" class="btn btn-primary btn-lg">Lapor</a></p></center>
+		   					<center><h2>Sistem Informasi Warga</h2>
+		   					<p><a href="<?php echo base_url()?>lapor" class="btn btn-primary btn-lg">Lapor</a></p></center>
 		   				</div>
 		   			</div>
 		   		</div>
@@ -132,6 +132,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		  	</ul>
 	  	</div>
 	</aside>
+
+	<div class="fh5co-cta" style="background-image: url(<?php echo base_url()?>assets/home/images/slide_2.jpg);">
+		<div class="overlay"></div>
+		<div class="container">
+			<div class="col-md-12 text-center animate-box">
+				<h3>Pengumuman</h3>
+				<p></p>
+			</div>
+		</div>
+	</div>
+
 	<div id="fh5co-blog-section" class="fh5co-light-grey-section">
 		<div class="container">
 			<div class="row">
@@ -139,39 +150,35 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<h2>Laporan Terbaru</h2>
 				</div>
 			</div>
+			<?php if(!$user){ ?>
+				<div class="col-md-6 col-md-offset-3 text-center fh5co-heading animate-box">
+					<h3>Belum ada laporan warga</h3>
+				</div>
+			<?php } else{
+							foreach($user as $data){  ?>
 			<div class="row">
-				<?php foreach($user as $data){  ?>
+
 				<div class="col-md-6 col-sm-6 animate-box">
-					<a href="#" class="item-grid">
+					<a href="<?php echo base_url()?>detail/index/<?php echo $data->id_laporan;?>" class="item-grid">
 						<div class="image" style="background-image: url(<?php echo base_url();?>gambar/<?php echo $data->foto;?>)"></div>
 						<div class="v-align">
 							<div class="v-align-middle">
 								<h3 class="title"><?php echo $data->topik; ?></h3>
 								<h5 class="date"><span><?php echo $data->tanggal; ?></span>
-								<p><?php echo $data->laporan; ?></p>
+								<h5><?php echo substr($data->laporan,0,50)." ..."; ?></h5>
+								<p align="right"><b><?php echo "Read More"?></b></p>
 							</div>
 						</div>
 					</a>
 				</div>
 			<?php } ?>
 				<div class="col-md-12 text-center animate-box">
-					<p><a href="#" class="btn btn-primary with-arrow">Lihat laporan lainnya<i class="icon-arrow-right"></i></a></p>
+					<p><a href="<?php echo base_url()?>list_laporan" class="btn btn-primary">Lihat laporan lainnya</a></p>
 				</div>
+				<?php } ?>
 			</div>
 		</div>
 	</div>
-
-
-	<div class="fh5co-cta" style="background-image: url(<?php echo base_url()?>assets/home/images/slide_2.jpg);">
-		<div class="overlay"></div>
-		<div class="container">
-			<div class="col-md-12 text-center animate-box">
-				<h3>We Try To Update The Site Everyday</h3>
-				<p><a href="#" class="btn btn-primary btn-outline with-arrow">Get started now! <i class="icon-arrow-right"></i></a></p>
-			</div>
-		</div>
-	</div>
-
 
 	<footer id="fh5co-footer" role="contentinfo">
 
