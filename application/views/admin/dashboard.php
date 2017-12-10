@@ -196,6 +196,52 @@
                         </div>
                     </div>
 
+
+
+                    <a href="<?php echo base_url()?>dashboard/add3">Create Pengumuman</a>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-bar-chart-o fa-fw"></i> Daftar Warga
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="table-responsive">
+                                            <table class="table table-bordered table-hover table-striped">
+                                                <thead>
+                                                    <tr>
+                                                      <td>Nomor Pengumuman</td>
+                                                      <td>Topik Pengumuman</td>
+                                                      <td>Deskripsi Pengumuman </td>
+                                                      <td>Action</td>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <?php foreach ($infowarga->result_array() as $key): ?>
+                                                          <tr>
+                                                            <td><?php echo $key['no_pengumuman'] ?></td>
+                                                            <td><?php echo $key['topik_pengumuman'] ?></td>
+                                                            <td><?php echo $key['deskripsi_pengumuman'] ?></td>
+                                                            <td>
+                                                              <a href="<?php echo base_url() ?>dashboard/update3/<?php echo $key['no_pengumuman'] ?>">Edit</a> |
+                                                              <a href="<?php echo base_url() ?>dashboard/delete3/<?php echo $key['no_pengumuman'] ?>">Delete</a>
+                                                            </td>
+                                                          </tr>
+                                                  <?php endforeach; ?>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <!-- /.table-responsive -->
+                                    </div>
+                                    <!-- /.col-lg-4 (nested) -->
+                                    <div class="col-lg-8">
+                                        <div id="morris-bar-chart"></div>
+                                    </div>
+                                    <!-- /.col-lg-8 (nested) -->
+                                </div>
+                                <!-- /.row -->
+                            </div>
+                        </div>
+                    </div>
                     <!-- /.panel -->
 
                     <!-- /.panel -->
