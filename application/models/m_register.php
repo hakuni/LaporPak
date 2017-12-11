@@ -34,18 +34,21 @@ class M_register extends CI_Model {
 
 	public function add(){
     $data = array(
-        'no_KTP'   => $this->input->post('no_KTP'),
-        'nama'     => $this->input->post('nama'),
-        'username' => $this->input->post('username'),
-        'password '     => md5($this->input->post('pass')),
-        'otoritas' => $this->input->post('otoritas')
+        'no_KTP'     => $this->input->post('no_KTP'),
+        'nama'       => $this->input->post('nama'),
+        'username'   => $this->input->post('username'),
+        'password '  => md5($this->input->post('pass')),
+        'otoritas'   => $this->input->post('otoritas')
     );
+
+    if($this->input->post('otoritas')==3){
     $data2 = array(
       'alamat' => $this->input->post('alamat'),
-      'no_KTP' => $this->input->post('no_KTP')
-      );
-
-		$this->db->insert('user',$data);
+      'pemilik'=> $this->input->post('no_KTP')
+    );
     $this->db->insert('rumah', $data2);
+  }
+    $this->db->insert('user',$data);
+
 	}
 }

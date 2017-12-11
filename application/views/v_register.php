@@ -19,6 +19,7 @@ if($this->session->userdata('status')=='login'){ ?>
           <div class="frm">
               <h3>Tambah User</h3>
               <p><?php echo validation_errors(); ?></p>
+              <p><?php echo $error;?></p>
               <form action="<?php echo base_url(). 'register/action_input'; ?>" method="post">
                   <!-- <div class="form-group">
                       <select name="otoritas" id="soflow-color">

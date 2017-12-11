@@ -17,7 +17,10 @@ class Login extends CI_Controller {
       if($this->input->post('submit')){
         if($this->m_login->cek()){
           $this->m_login->set_login();
-          redirect('home');
+          if($this->session->userdata('otoritas')== 1 || $this->session->userdata('otoritas')== 2)
+            redirect('Dashboard');
+          else
+            redirect('home');
         }
         else{
           $error = array('error' => "Username atau Password Salah");

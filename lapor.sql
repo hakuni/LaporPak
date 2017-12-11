@@ -1,100 +1,168 @@
-/*
-SQLyog Ultimate v12.09 (64 bit)
-MySQL - 10.1.21-MariaDB : Database - lapor
-*********************************************************************
-*/
+-- phpMyAdmin SQL Dump
+-- version 4.4.14
+-- http://www.phpmyadmin.net
+--
+-- Host: 127.0.0.1
+-- Generation Time: Dec 11, 2017 at 03:12 PM
+-- Server version: 5.6.26
+-- PHP Version: 5.5.28
 
-/*!40101 SET NAMES utf8 */;
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
-/*!40101 SET SQL_MODE=''*/;
 
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-CREATE DATABASE /*!32312 IF NOT EXISTS*/`lapor` /*!40100 DEFAULT CHARACTER SET latin1 */;
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
-USE `lapor`;
+--
+-- Database: `lapor`
+--
 
-/*Table structure for table `laporan` */
+-- --------------------------------------------------------
 
-DROP TABLE IF EXISTS `laporan`;
+--
+-- Table structure for table `laporan`
+--
 
-CREATE TABLE `laporan` (
-  `id_laporan` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `laporan` (
+  `id_laporan` int(11) NOT NULL,
   `no_KTP` bigint(16) NOT NULL,
   `topik` text NOT NULL,
   `laporan` text NOT NULL,
+  `tanggal` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `foto` varchar(100) NOT NULL,
-  `status` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id_laporan`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 
-/*Data for the table `laporan` */
+--
+-- Dumping data for table `laporan`
+--
 
-/*Table structure for table `pembayaran` */
+INSERT INTO `laporan` (`id_laporan`, `no_KTP`, `topik`, `laporan`, `tanggal`, `foto`, `status`) VALUES
+(20, 1771061007980001, 'Jalan Rusak!!', 'Jalan rusak di depan kosan saya jancuk!', '2017-12-10 10:45:34', 'file_1512902734.jpg', 0);
 
-DROP TABLE IF EXISTS `pembayaran`;
+-- --------------------------------------------------------
 
-CREATE TABLE `pembayaran` (
+--
+-- Table structure for table `pembayaran`
+--
+
+CREATE TABLE IF NOT EXISTS `pembayaran` (
   `kode_pembayaran` int(11) NOT NULL,
   `no_KTP` bigint(16) NOT NULL,
   `id_rumah` int(11) NOT NULL,
-  `total_biaya` int(100) NOT NULL,
-  PRIMARY KEY (`kode_pembayaran`)
+  `total_biaya` int(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-/*Data for the table `pembayaran` */
+-- --------------------------------------------------------
 
-/*Table structure for table `pengumuman` */
+--
+-- Table structure for table `pengumuman`
+--
 
-DROP TABLE IF EXISTS `pengumuman`;
-
-CREATE TABLE `pengumuman` (
-  `no_pengumuman` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE IF NOT EXISTS `pengumuman` (
+  `no_pengumuman` int(11) NOT NULL,
   `topik_pengumuman` text NOT NULL,
-  `deskripsi_pengumuman` text NOT NULL,
-  PRIMARY KEY (`no_pengumuman`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  `deskripsi_pengumuman` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-/*Data for the table `pengumuman` */
+-- --------------------------------------------------------
 
-/*Table structure for table `rumah` */
+--
+-- Table structure for table `rumah`
+--
 
-DROP TABLE IF EXISTS `rumah`;
-
-CREATE TABLE `rumah` (
-  `id_rumah` int(11) NOT NULL AUTO_INCREMENT,
-  `no_KTP` bigint(16) NOT NULL,
+CREATE TABLE IF NOT EXISTS `rumah` (
+  `id_rumah` int(11) NOT NULL,
+  `pemilik` bigint(16) NOT NULL,
   `nomor_rumah` int(10) NOT NULL,
   `jumlah_penghuni` int(10) NOT NULL,
-  `alamat` varchar(100) NOT NULL,
-  PRIMARY KEY (`id_rumah`),
-  UNIQUE KEY `nomor_rumah` (`nomor_rumah`)
+  `alamat` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-/*Data for the table `rumah` */
+-- --------------------------------------------------------
 
-/*Table structure for table `user` */
+--
+-- Table structure for table `user`
+--
 
-DROP TABLE IF EXISTS `user`;
-
-CREATE TABLE `user` (
+CREATE TABLE IF NOT EXISTS `user` (
   `no_KTP` bigint(16) NOT NULL,
   `username` varchar(10) NOT NULL,
   `nama` varchar(50) NOT NULL,
   `password` varchar(35) NOT NULL,
-  `otoritas` int(11) NOT NULL DEFAULT '4',
-  `foto_profil` varchar(100) NOT NULL,
-  `nomor_rumah` int(11) NOT NULL,
-  PRIMARY KEY (`no_KTP`)
+  `otoritas` int(11) DEFAULT '4',
+  `foto_profil` varchar(100) DEFAULT NULL,
+  `nomor_rumah` int(11) DEFAULT NULL,
+  `agama` varchar(10) DEFAULT NULL,
+  `telepon` int(12) DEFAULT NULL,
+  `jenis_k` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-/*Data for the table `user` */
+--
+-- Dumping data for table `user`
+--
 
-insert  into `user`(`no_KTP`,`username`,`nama`,`password`,`otoritas`,`foto_profil`,`nomor_rumah`) values (1234567890123456,'neni','NANIII !!!!!','',4,'',5),(1771061007980001,'ilhamk','Ilham Kurniawan','b749aeda54a5ad4aac8e5340da5600c6',1,'',0);
+INSERT INTO `user` (`no_KTP`, `username`, `nama`, `password`, `otoritas`, `foto_profil`, `nomor_rumah`, `agama`, `telepon`, `jenis_k`) VALUES
+(1234567890123456, 'neni', 'Neni', '7a57a80314a2af4e4fc836700d291429', 2, '', NULL, NULL, NULL, NULL),
+(1771061007980001, 'ilhamk', 'Ilham Kurniawan', 'b749aeda54a5ad4aac8e5340da5600c6', 1, '', NULL, NULL, NULL, NULL);
 
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `laporan`
+--
+ALTER TABLE `laporan`
+  ADD PRIMARY KEY (`id_laporan`);
+
+--
+-- Indexes for table `pembayaran`
+--
+ALTER TABLE `pembayaran`
+  ADD PRIMARY KEY (`kode_pembayaran`);
+
+--
+-- Indexes for table `pengumuman`
+--
+ALTER TABLE `pengumuman`
+  ADD PRIMARY KEY (`no_pengumuman`);
+
+--
+-- Indexes for table `rumah`
+--
+ALTER TABLE `rumah`
+  ADD PRIMARY KEY (`id_rumah`),
+  ADD UNIQUE KEY `nomor_rumah` (`nomor_rumah`);
+
+--
+-- Indexes for table `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`no_KTP`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `laporan`
+--
+ALTER TABLE `laporan`
+  MODIFY `id_laporan` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
+--
+-- AUTO_INCREMENT for table `pengumuman`
+--
+ALTER TABLE `pengumuman`
+  MODIFY `no_pengumuman` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `rumah`
+--
+ALTER TABLE `rumah`
+  MODIFY `id_rumah` int(11) NOT NULL AUTO_INCREMENT;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
