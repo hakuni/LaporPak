@@ -72,7 +72,7 @@
 				<h1><a href="index.html">LaporPak</a></h1>
 				<nav role="navigation">
 					<ul>
-						<li><a href="work.html">laporan</a></li>
+						<li><a href="laporan.html">laporan</a></li>
 						<li><a href="about.html">About</a></li>
 						<li><a href="contact.html">Contact</a></li>
 						<li><a href="profil.html">Profil</a></li>
@@ -90,9 +90,8 @@
     <div class="container">
       <ul class="nav nav-tabs nav-justified text-center">
             <li class="active"><a data-toggle="tab" href="#upcoming">PROFIL</a></li>
-            <li><a data-toggle="tab" href="#bookmark">EDIT FOTO</a></li>
+            <li><a data-toggle="tab" href="#bookmark">Daftar Penghuni</a></li>
             <li><a data-toggle="tab" href="#past">LAPORANKU</a></li>
-            <li><a data-toggle="tab" href="#certificate">DAFTAR PENGHUNI</a></li>
       </ul>
   </div>
 
@@ -161,17 +160,99 @@
         
         <div id="bookmark" class="tab-pane fade text-center">
           <br />
-          <td><button onclick="document.getElementById('genmodal').style.display='block'" class="submit btn btn-primary btn-xl text-center">ubah foto</button></td>
+          <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>NO</th>
+        <th>Foto</th>
+        <th>Biodata</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td><img src="desk.jpg" class="img" weight="150px" height="150px"></td>
+        <td>
+        	<table>
+								<tr>
+									<td>No Rumah</td>
+									<td>:</td>
+									<td></td>
+								</tr>
+								<tr>
+									<td>Nama</td>
+									<td>:</td>
+									<td></td>
+								</tr>
+								<tr>
+									<td>No KTP</td>
+									<td>:</td>
+									<td> </td>
+								</tr>
+								<tr>
+									<td>Username</td>
+									<td>:</td>
+									<td> </td>
+								</tr>
+								<tr>
+									<td>Alamat</td>
+									<td>:</td>
+									<td>  </td>
+								</tr>
+								<tr>
+									<td>Telepon</td>
+									<td>:</td>
+									<td> </td>
+								</tr>
+								<tr>
+									<td>Jenis Kelamin</td>
+									<td>:</td>
+									<td> </td>
+								</tr>
+								<tr>
+									<td>Agama</td>
+									<td>:</td>
+									<td> </td>
+								</tr>	
+				</table>	
+
+        </td>
+      </tr>
+      <tr>
+        <td>Mary</td>
+        <td>Moe</td>
+        <td>mary@example.com</td>
+      </tr>
+      <tr>
+        <td>July</td>
+        <td>Dooley</td>
+        <td>july@example.com</td>
+      </tr>
+    </tbody>
+  </table>
         </div>
         <div id="past" class="tab-pane fade text-center">
           <br />
-          <p>You have no laporan</p>
-          
+			        <div id="fh5co-blog-section" class="fh5co-light-grey-section">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-4 animate-box">
+								<a href="#" class="item-grid">
+									<div class="image" style="background-image: url(desk.jpg)"></div>
+									<div class="v-align">
+										<div class="v-align-middle">
+											<h3 class="title">We Create Mobile App</h3>
+											<h5 class="date"><span>June 23, 2016</span> | <span>4 Comments</span></h5>
+											<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove.</p>
+										</div>
+									</div>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
         </div>
-        <div id="past" class="tab-pane fade text-center">
-          <br />
-          <p>You have no penghuni</p>   
-        </div>
+        
       </div>	
 
 
