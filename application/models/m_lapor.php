@@ -11,7 +11,7 @@ class M_lapor extends CI_Model {
     $config['allowed_types']    = 'gif|jpg|png';
     $config['max_size']         = 2048;
     $config['remove_space']     = TRUE;
-    $config['file_name']        = "file_".time();
+    $config['file_name']        = "l-file_".time();
 
     $this->load->library('upload',$config);
 

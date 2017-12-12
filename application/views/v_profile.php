@@ -101,23 +101,19 @@ if($this->session->userdata('status')=='login'){ ?>
             <li><a data-toggle="tab" href="#bookmark">DAFTAR PENGHUNI</a></li>
       </ul>
 
-      <div class="tab-content text-center">
+      <div class="tab-content">
         <div id="upcoming" class="tab-pane fade in active">
                      <!-- Rincian Profil -->
               <div class="container">
                 <div class="row">
-                    <div class="col-lg-4">
-                        <div id="General" class="w3-container city" style="display: block;">
-														<div class="w3-half w3-container xlarge">
-															<br><table>
-																<thead>
-																	<form action=""></form>
-																		<tr>
-																			<th data-field="id">Profile Info</th>
-																			<th data-field="separator"></th>
-																			<th data-field="name"></th>
-																		</tr>
-																</thead>
+									<br/>
+									<div class="col-lg-2"></div>
+									<div class="col-lg-4 text-center">
+										<img src="<?php echo base_url()?>gambar/default.jpg" class="img-responsive" width="" height="" alt="">
+									</div>
+									<div class="col-lg-6">
+										<h3 data-field="id">Profile Info</h3>
+															<table>
 																<?php foreach($user as $data){ ?>
 																<h2><tbody>
 																	<tr>
@@ -136,22 +132,6 @@ if($this->session->userdata('status')=='login'){ ?>
 																		<td><?php echo $data->username;?></td>
 																	</tr>
 																	<tr>
-																		<td>Alamat</td>
-																		<td>:</td>
-																		<td><?php foreach($rumah as $rmh){ echo $rmh->alamat;}?></td>
-																	</tr>
-																	<tr>
-																		<td>No Rumah</td>
-																		<td>:</td>
-																		<td><?php echo $data->nomor_rumah;?></td>
-																	</tr>
-																	<tr>
-																		<td>Telepon</td>
-																		<td>:</td>
-																		<td><?php echo $data->telepon;?></td>
-																	</tr>
-
-																	<tr>
 																		<td>Jenis Kelamin</td>
 																		<td>:</td>
 																		<td><?php echo $data->jenis_k;?></td>
@@ -161,11 +141,27 @@ if($this->session->userdata('status')=='login'){ ?>
 																		<td>:</td>
 																		<td><?php echo $data->agama;?></td>
 																	</tr>
+																	<tr>
+																		<td>No Rumah</td>
+																		<td>:</td>
+																		<td><?php echo $data->nomor_rumah;?></td>
+																	</tr>
+																	<tr>
+																		<td>Alamat</td>
+																		<td>:</td>
+																		<td><?php foreach($rumah as $rmh){ echo $rmh->alamat;}?></td>
+																	</tr>
+																	<tr>
+																		<td>Telepon</td>
+																		<td>:</td>
+																		<td><?php echo $data->telepon;?></td>
+																	</tr>
 																<?php } ?>
 																	<tr>
 																		<td></td>
 																		<td></td>
-																		<td><a href="<?php echo base_url();?>profile/edit_profile"><button onclick="document.getElementById('genmodal').style.display='block'" class="submit btn btn-primary btn-xl">Ubah data</button></a></td>
+																		<td><a href="<?php echo base_url();?>editP"><button onclick="document.getElementById('genmodal').style.display='block'" class="submit btn btn-primary btn-xl">Ubah data</button></a></td>
+																		<td><a href="<?php echo base_url();?>editP"><button onclick="document.getElementById('genmodal').style.display='block'" class="submit btn btn-primary btn-xl">Ganti Password</button></a></td>
 																	</tr>
 																</tbody></h2>
 															</table>
@@ -173,19 +169,39 @@ if($this->session->userdata('status')=='login'){ ?>
 													</div>
                       </div>
                 </div>
-              </div>
-        </div>
 
-        <div id="bookmark" class="tab-pane fade">
-          <br />
-
-          <td><a href="register"><button onclick="document.getElementById('genmodal').style.display='block'" class="submit btn btn-primary btn-xl">Tambahkan Penghuni</button></a></td>
-        </div>
 
         <div id="past" class="tab-pane fade">
-          <br />
+          <br/>
+					<?php if(!$laporan){ ?>
           <p>Anda belum memiliki laporan</p>
+				<?php } else {
+					foreach($laporan as $lapor){ ?>
+						<div id="fh5co-blog-section" class="fh5co-light-grey-section">
+								<div class="container">
+									<div class="row">
+										<div class="col-md-4 animate-box">
+											<a href="<?php echo base_url()?>detail/index/<?php echo $lapor->id_laporan;?>" class="item-grid">
+												<div class="image" style="background-image: url(<?php echo base_url();?>gambar/<?php echo $lapor->foto;?>)"></div>
+												<div class="v-align">
+													<div class="v-align-middle">
+														<h3 class="title"><?php echo $lapor->topik; ?></h3>
+														<h5 class="date"><span><?php echo $lapor->tanggal; ?></span>
+														<p><?php echo $lapor->laporan ?></p>
+													</div>
+												</div>
+											</a>
+										</div>
+									</div>
+								</div>
+					</div>
+				<?php } } ?>
+        </div>
 
+				<div id="bookmark" class="tab-pane fade">
+          <br />
+
+          <td><a href="<?php echo base_url()?>register"><button onclick="document.getElementById('genmodal').style.display='block'" class="submit btn btn-primary btn-xl">Tambahkan Penghuni</button></a></td>
         </div>
       </div>
     </div>

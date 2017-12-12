@@ -89,14 +89,14 @@
 
 	<div class="container">
     <?php foreach($details as $data){ ?>
-			<div class="col-md-6 col-md-push-1 animate-box">
+			<div class="col-md-6 col-md-push-3 animate-box">
 				<figure>
 					<img src="<?php echo base_url()?>gambar/<?php echo $data->foto;?>" alt="Free HTML5 Template" class="img-responsive">
 				</figure>
 			</div>
-			<div class="col-md-8 col-md-push-1 animate-box">
+			<div class="col-md-10 col-md-push-1 animate-box">
 				<h2><?php echo $data->topik;?></h2>
-        <h5 class="date"><span><?php echo $data->tanggal; ?></span>
+        <h5 class="date"><span><?php echo $data->tanggal; ?></span></h5>
 				<p><?php echo $data->laporan;?></p>
 			</div>
       <?php } ?>

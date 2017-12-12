@@ -15,7 +15,7 @@ class List_laporan extends CI_Controller {
     $this->load->library('pagination');
     $config['base_url'] = base_url().'list_laporan/index';
     $config['total_rows'] = $jumlah_data;
-    $config['per_page'] = 1;
+    $config['per_page'] = 9;
     $from = $this->uri->segment(3);
     $this->pagination->initialize($config);
     $data['lapor'] = $this->m_list->data($config['per_page'], $from);

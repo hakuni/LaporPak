@@ -26,9 +26,13 @@ class Register extends CI_Controller {
             }
         }
         else {
-          $this->load->view('v_register');
+          $this->load->view('v_register', array('error'=>' '));
         }
     }
+  }
+
+  public function editP(){
+    
   }
 }
 
