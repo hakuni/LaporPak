@@ -10,7 +10,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Flew &mdash; laporan</title>
+	<title>List Laporan</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="description" content="Free HTML5 Website Template by FreeHTML5.co" />
 	<meta name="keywords" content="free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
@@ -73,6 +73,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<h1><a href="<?php echo base_url()?>">LaporPak</a></h1>
 				<nav role="navigation">
 					<ul>
+						<?php if($this->session->userdata('otoritas')==1 || $this->session->userdata('otoritas')==2){ ?>
+						<li><a href="<?php echo base_url()?>Dashboard">Dashboard</a></li> <?php } ?>
 						<li><a href="<?php echo base_url()?>list_laporan">Laporan</a></li>
 						<li><a href="#">About</a></li>
 						<li><a href="#">Contact</a></li>

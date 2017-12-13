@@ -35,7 +35,7 @@ if($this->session->userdata('status')=='login'){ ?>
                           <option value="3">Pemilik Rumah</option>
                           <?php if($this->session->userdata('otoritas')==1){ ?>
                           <option value="2">Ketua RT</option>
-                        <?php } ?>
+                          <?php } ?>
                           </select></center>
                   </div>
                       <label for="pwd">Nama:</label>
@@ -62,6 +62,7 @@ if($this->session->userdata('status')=='login'){ ?>
                   </div>
                   <div class="form-group">
                       <input type="submit" name="submit" class="btn btn-success btn-lg" value="Tambah">
+                      <a href="<?php echo base_url().'profile'?>"><input type="button" name="submit" class="btn btn-fail btn-lg" value="Batal"></a>
                   </div>
               </form>
           </div>

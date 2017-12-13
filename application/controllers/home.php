@@ -11,6 +11,7 @@ class Home extends CI_Controller {
   }
   public function index(){
     $data['user'] = $this->m_home->ambil('laporan');
+    $data['pengumuman'] = $this->m_home->ambil_p('pengumuman');
 		$this->load->view('v_home',$data);
 	}
 

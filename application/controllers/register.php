@@ -17,8 +17,13 @@ class Register extends CI_Controller {
     if($this->input->post('submit')){
         if($this->m_register->validation()){
             if($this->m_register->cek()){
-              $this->m_register->add();
-              redirect('home');
+              $this->m_register->add();?>
+              <script language="javascript">alert("User berhasil ditambah");</script>
+              <?php if($this->session->userdata('otoritas')== 3){ ?>
+              <script>document.location.href='<?php echo base_url().'profile'?>';</script>
+            <?php } else if($this->session->userdata('otoritas')== 1 || $this->session->userdata('otoritas')== 2){ ?>
+              <script>document.location.href='<?php echo base_url().'Dashboard'?>';</script>
+            <?php }
             }
             else {
               $error = array('error'=>"No. KTP atau username sudah digunakan");
@@ -32,7 +37,7 @@ class Register extends CI_Controller {
   }
 
   public function editP(){
-    
+
   }
 }
 

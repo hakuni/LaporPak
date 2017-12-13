@@ -10,7 +10,7 @@ class M_register extends CI_Model {
     $this->load->library('form_validation');
 
     $this->form_validation->set_rules('no_KTP', 'No. KTP', 'required|integer|exact_length[16]');
-    $this->form_validation->set_rules('username', 'Username', 'required|alpha_numeric|min_length[3]|max_length[10]');
+    $this->form_validation->set_rules('telp', 'Telepon', 'required|integer|min_length[11]|max_length[13]');
     $this->form_validation->set_rules('nama', 'Nama', 'required|alpha_numeric_spaces');
 
     if($this->form_validation->run()){
@@ -40,7 +40,8 @@ class M_register extends CI_Model {
         'password '   => md5($this->input->post('pass')),
         'otoritas'    => $this->input->post('otoritas'),
         'jenis_k'     => $this->input->post('jenis_k'),
-        'nomor_rumah' => $this->input->post('no_rmh')
+        'nomor_rumah' => $this->input->post('no_rmh'),
+        'create_when' => date('Y-m-d')
     );
     $this->db->insert('user',$data);
 

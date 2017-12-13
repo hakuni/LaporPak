@@ -14,9 +14,10 @@ class Lapor extends CI_Controller {
   function action_lapor(){
       if($this->input->post('submit')){
         if($this->m_lapor->validation()){
-            $this->m_lapor->upload();
-            redirect('home');
-        }
+            $this->m_lapor->upload();?>
+            <script language="javascript">alert("Berhasil Melapor");</script>
+            <script>document.location.href='<?php echo base_url()?>';</script>
+        <?php }
         else{
       			$error = array('error' => $this->upload->display_errors());
       			$this->load->view('v_lapor', $error);

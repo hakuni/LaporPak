@@ -17,12 +17,14 @@ class Login extends CI_Controller {
       if($this->input->post('submit')){
         if($this->m_login->cek()){
           $this->m_login->set_login();
-          if($this->session->userdata('otoritas')== 1 || $this->session->userdata('otoritas')== 2)
-            redirect('Dashboard');
-          else
-            redirect('home');
-        }
-        else{
+          ?>
+          <script language="javascript">alert("Login Success");</script>
+          <?php if($this->session->userdata('otoritas')== 1 || $this->session->userdata('otoritas')== 2){ ?>
+              <script>document.location.href='<?php echo base_url().'Dashboard'?>';</script>
+          <?php } else ?>
+              <script>document.location.href='<?php echo base_url() ?>';</script>
+          <?php
+        } else {
           $error = array('error' => "Username atau Password Salah");
           $this->load->view('v_login', $error);
         }

@@ -72,6 +72,8 @@
 				<h1><a href="<?php echo base_url()?>">LaporPak</a></h1>
 				<nav role="navigation">
 					<ul>
+						<?php if($this->session->userdata('otoritas')==1 || $this->session->userdata('otoritas')==2){ ?>
+						<li><a href="<?php echo base_url()?>Dashboard">Dashboard</a></li> <?php } ?>
 						<li><a href="<?php echo base_url()?>list_laporan">Laporan</a></li>
 						<li><a href="#">About</a></li>
 						<li><a href="#">Contact</a></li>
@@ -91,7 +93,7 @@
     <?php foreach($details as $data){ ?>
 			<div class="col-md-6 col-md-push-3 animate-box">
 				<figure>
-					<img src="<?php echo base_url()?>gambar/<?php echo $data->foto;?>" alt="Free HTML5 Template" class="img-responsive">
+					<img src="<?php echo base_url().'gambar/'.$data->foto;?>" alt="Free HTML5 Template" class="img-responsive">
 				</figure>
 			</div>
 			<div class="col-md-10 col-md-push-1 animate-box">

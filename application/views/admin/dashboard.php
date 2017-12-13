@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    <title>Dashboard Admin LaporPak</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="<?php base_url()?>assets/admin/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -48,7 +48,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">Dashboard Admin</a>
+                <a class="navbar-brand" href="#">Dashboard Admin</a>
             </div>
 
                 <!-- /.dropdown -->
@@ -70,7 +70,10 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a href="#"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="<?php echo base_url()?>"><i class="fa fa-dashboard fa-fw"></i> Home</a>
                         </li>
 
                                     </ul>
@@ -113,7 +116,7 @@
                                             <table class="table table-bordered table-hover table-striped">
                                                 <thead>
                                                     <tr>
-                                                      <td>Nomor Laporan</td>
+                                                      <td>No.</td>
                                                       <td>Nomor KTP Pelapor</td>
                                                       <td>Topik Laporan</td>
                                                       <td>Deskripsi Laporan</td>
@@ -121,15 +124,14 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <?php foreach ($laporan->result_array() as $key): ?>
+                                                    <?php $no = 0; foreach ($laporan->result_array() as $key): ?>
                                                           <tr>
-                                                            <td><?php echo $key['id_laporan'] ?></td>
+                                                            <td><?php echo ++$no ?></td>
                                                             <td><?php echo $key['no_KTP'] ?></td>
                                                             <td><?php echo $key['topik'] ?></td>
                                                             <td><?php echo $key['laporan'] ?></td>
                                                             <td>
-                                                              <a href="<?php echo base_url() ?>dashboard/read/<?php echo $key['id_laporan'] ?>">Read</a> |
-                                                              <a href="<?php echo base_url() ?>dashboard/update/<?php echo $key['id_laporan'] ?>">Edit</a> |
+                                                              <a href="<?php echo base_url() ?>detail/index/<?php echo $key['id_laporan'] ?>">Read</a> |
                                                               <a href="<?php echo base_url() ?>dashboard/delete/<?php echo $key['id_laporan'] ?>">Delete</a>
                                                             </td>
                                                           </tr>
@@ -205,16 +207,16 @@
                                             <table class="table table-bordered table-hover table-striped">
                                                 <thead>
                                                     <tr>
-                                                      <td>Nomor Pengumuman</td>
+                                                      <td>No.</td>
                                                       <td>Topik Pengumuman</td>
                                                       <td>Deskripsi Pengumuman </td>
                                                       <td>Action</td>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <?php foreach ($infowarga->result_array() as $key): ?>
+                                                    <?php $no=0; foreach ($infowarga->result_array() as $key): ?>
                                                           <tr>
-                                                            <td><?php echo $key['no_pengumuman'] ?></td>
+                                                            <td><?php echo ++$no ?></td>
                                                             <td><?php echo $key['topik_pengumuman'] ?></td>
                                                             <td><?php echo $key['deskripsi_pengumuman'] ?></td>
                                                             <td>
@@ -237,11 +239,11 @@
                         </div>
                     </div>
                     <!-- /.panel -->
-                    <div class="row">
+                    <!-- <div class="row">
                         <div class="col-lg-12">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <i class="fa fa-bar-chart-o fa-fw"></i> Area Chart Example
+                                    <i class="fa fa-bar-chart-o fa-fw"></i> Jumlah Warga
                                     <div class="pull-right">
                                         <div class="btn-group">
                                             <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
@@ -265,52 +267,53 @@
                                 <!-- /.panel-heading -->
                                 <div >
                                     <div id="morris-area-chart"></div>
-                                </div>
+                                </div> -->
                     <!-- /.panel -->
 
 
                 </div>
                 <style>
-                 #chart{
-                   z-index:-10;}
-                </style>
-                 <div id="chart">
-                </div>
-                <script src="&lt;<?php echo base_url();?>&gt;assets/highcharts/jquery.min.js" type="text/javascript"></script>
-                <script src="&lt;<?php echo base_url();?>&gt;assets/highcharts/highcharts.js" type="text/javascript"></script>
-                <script src="&lt;<?php echo base_url();?>&gt;assets/highcharts/modules/exporting.js" type="text/javascript"></script>
-                <script src="&lt;<?php echo base_url();?>&gt;assets/highcharts/modules/offline-exporting.js" type="text/javascript"></script>
-                <script type="text/javascript">
-                jQuery(function(){
-                 new Highcharts.Chart({
-                  chart: {
-                   renderTo: 'chart',
-                   type: 'line',
-                  },
-                  title: {
-                   text: 'Grafik Statistik pengunjung',
-                   x: -20
-                  },
-                  subtitle: {
-                   text: 'Count visitor',
-                   x: -20
-                  },
-                  xAxis: {
-                   categories: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun',
-                                    'Jul', 'Ags', 'Sep', 'Okt', 'Nov', 'Des']
-                  },
-                  yAxis: {
-                   title: {
-                    text: 'Total pengunjung'
-                   }
-                  },
-                  series: [{
-                   name: 'Data dalam Bulan',
-                   data: <?php echo json_encode($grafik); ?>
-                  }]
-                 });
-                });
-                </script>
+ #chart{
+   z-index:-10;}
+</style>
+<body>
+ <div id="chart">
+</div>
+<script src="&lt;?php echo base_url();?&gt;asset/highcharts/jquery.min.js" type="text/javascript"></script>
+<script src="&lt;?php echo base_url();?&gt;asset/highcharts/highcharts.js" type="text/javascript"></script>
+<script src="&lt;?php echo base_url();?&gt;asset/highcharts/modules/exporting.js" type="text/javascript"></script>
+<script src="&lt;?php echo base_url();?&gt;asset/highcharts/modules/offline-exporting.js" type="text/javascript"></script>
+<script type="text/javascript">
+jQuery(function(){
+ new Highcharts.Chart({
+  chart: {
+   renderTo: 'chart',
+   type: 'line',
+  },
+  title: {
+   text: 'Grafik Statistik pengunjung',
+   x: -20
+  },
+  subtitle: {
+   text: 'Count visitor',
+   x: -20
+  },
+  xAxis: {
+   categories: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun',
+                    'Jul', 'Ags', 'Sep', 'Okt', 'Nov', 'Des']
+  },
+  yAxis: {
+   title: {
+    text: 'Total pengunjung'
+   }
+  },
+  series: [{
+   name: 'Data dalam Bulan',
+   data: <?php echo json_encode($grafik); ?>
+  }]
+ });
+});
+</script>
 
 
                 <!-- /.col-lg-8 -->

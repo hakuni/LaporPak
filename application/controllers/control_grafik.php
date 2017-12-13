@@ -2,7 +2,14 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class control_grafik extends CI_Controller {
+  function __construct(){
+		parent::__construct();
+    $this->load->helper(array('form', 'url'));
+    $this->load->model('m_grafik');
+  }
  public function index() {
+      // foreach($this->m_grafik->get()->result_array() as $row)
+      //     $data[] = (int) $row['hasil'];
 
    foreach($this->m_grafik->statistik_pengunjung()->result_array() as $row)
    {
@@ -20,5 +27,7 @@ class control_grafik extends CI_Controller {
     $data['grafik'][]=(float)$row['Desember'];
    }
 
-   $this->load->view('admin/dashboard', $data);
+   $this->load->view('grafik', $data);
  }
+
+}

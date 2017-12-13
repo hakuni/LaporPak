@@ -13,7 +13,7 @@ class Profile extends CI_Controller {
     $data['user'] = $this->m_profile->ambil('user', array('no_KTP'=>$this->session->userdata('no_KTP')));
     $data['laporan'] = $this->m_profile->ambil('laporan', array('no_KTP'=>$this->session->userdata('no_KTP')));
     $data['rumah'] = $this->m_profile->ambil('rumah', array('no_KTP'=>$this->session->userdata('no_KTP')));
-    // $data['penghuni'] = $this->m_profil->ambil();
+    $data['penghuni'] = $this->m_profile->ambil_user();
 		$this->load->view('v_profile', $data);
 	}
 

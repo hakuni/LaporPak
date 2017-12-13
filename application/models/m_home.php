@@ -9,4 +9,8 @@ class M_home extends CI_Model {
   function ambil($table){
     return $this->db->limit('4')->order_by('tanggal', 'DESC')->get($table)->result();
   }
+
+  function ambil_p($table){
+    return $this->db->get($table)->result();
+  }
 }

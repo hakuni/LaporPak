@@ -8,7 +8,7 @@ if($this->session->userdata('status')=='login'){ ?>
   <head>
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta charset="utf-8">
-      <title>Register</title>
+      <title>Edit Profil</title>
       <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
       <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/login/style_edit.css">
   </head>
@@ -19,7 +19,7 @@ if($this->session->userdata('status')=='login'){ ?>
               <h3>Edit Akun</h3>
               <p><?php echo validation_errors(); ?></p>
               <p><?php echo $error;?></p>
-              <form action="<?php echo base_url().'editP/action'; ?>" method="post">
+              <?php echo form_open_multipart('editP/action');?>
                   <?php foreach($user as $data){ ?>
                     <div class="w3-section w3-center">
       									<br><label><b>Tambahkan Foto</b></label>
@@ -31,10 +31,12 @@ if($this->session->userdata('status')=='login'){ ?>
                       <label for="pwd">No Rumah:</label>
                       <input class="form-control" value="<?php echo $data->nomor_rumah ?>" disabled>
                   </div>
+                  <?php if($this->session->userdata('otoritas')==3){ ?>
                   <div class="form-group">
                       <label for="pwd">Alamat:</label>
                       <input name="alamat" type="text" class="form-control"  placeholder="Masukkan alamat">
                   </div>
+                  <?php } ?>
                   <div class="form-group">
                       <label for="username">Nomor telepon:</label>
                       <input type="number" class="form-control" name="telp" placeholder="Masukan nomor telepon" name="no_KTP" maxlength="13">
@@ -70,8 +72,8 @@ if($this->session->userdata('status')=='login'){ ?>
                 <?php } ?>
                   <div class="form-group">
                       <input type="submit" name="submit" class="btn btn-success btn-lg" value="Simpan">
+                      <a href="<?php echo base_url().'profile'?>"><input type="button" name="submit" class="btn btn-fail btn-lg" value="Batal"></a>
                   </div>
-              </form>
           </div>
       </div>
   </body>

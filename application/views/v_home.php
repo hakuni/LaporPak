@@ -77,6 +77,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<h1><a href="<?php echo base_url()?>">LaporPak</a></h1>
 				<nav role="navigation">
 					<ul>
+						<?php if($this->session->userdata('otoritas')==1 || $this->session->userdata('otoritas')==2){ ?>
+						<li><a href="<?php echo base_url()?>Dashboard">Dashboard</a></li> <?php } ?>
 						<li><a href="<?php echo base_url()?>list_laporan">Laporan</a></li>
 						<li><a href="#">About</a></li>
 						<li><a href="#">Contact</a></li>
@@ -119,7 +121,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		   			</div>
 		   		</div>
 		   	</li>
-		   	<li style="background-image: url(<?php echo base_url()?>assets/home/images/a3.jpg);">
+		   	<!-- <li style="background-image: url(<?php echo base_url()?>assets/home/images/a3.jpg);">
 		   		<div class="container">
 		   			<div class="col-md-10 col-md-offset-1 text-center js-fullheight slider-text">
 		   				<div class="slider-text-inner">
@@ -128,7 +130,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		   				</div>
 		   			</div>
 		   		</div>
-		   	</li>
+		   	</li> -->
 		  	</ul>
 	  	</div>
 	</aside>
@@ -137,8 +139,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<div class="overlay"></div>
 		<div class="container">
 			<div class="col-md-12 text-center animate-box">
-				<h3>Pengumuman</h3>
-				<p></p>
+				<?php if(!$pengumuman){ echo "<h3>Tidak ada pengumuman saat ini</h3>";} else { ?>
+					<h3>Pengumuman</h3>
+				<?php } ?>
 			</div>
 		</div>
 	</div>
