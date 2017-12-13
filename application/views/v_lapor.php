@@ -19,7 +19,7 @@ if($this->session->userdata('status')=='login'){ ?>
 	            <h1>Buat Laporan</h1>
 							<p><?php echo $error;?><p>
 	            <?php echo form_open_multipart('lapor/action_lapor');?>
-							<div class="w3-section"><br/>
+							<div class="form-group"><br/>
 							<h3>Topik <b>Laporan</b></h3>
 								<input class="col-md-12" name="topik" placeholder="Topik" required>
 							<br/>
@@ -27,14 +27,19 @@ if($this->session->userdata('status')=='login'){ ?>
 									<textarea id="isiartikel" class="col-md-12" name="laporan" placeholder="Isi Laporan" required></textarea><br/>
 							<br/>
 							</div>
-							<div class="w3-section w3-center">
+							<div class="form-group">
 									<br><label><b>Tambahkan Foto</b></label>
 									<p> Upload foto, max 2 MB </p>
 									<input class="w3-input w3-border" name="berkas" type="file" required>
 							</div>
-							<br/>
-							<input type="submit" name="submit" class="btn btn btn-primary btn-xl col-md-12" value="KIRIM">
-							<br/>
+							<div class="form-group">
+									<br/>
+									<input type="submit" name="submit" class="btn btn btn-primary btn-xl col-md-12" value="KIRIM">
+							</div>
+							<div class="form-group">
+									<br/>
+									<a href="<?php echo base_url()?>"><input type="button" class="btn btn btn-second btn-xl col-md-12" value="BATAL"></a>
+							</div>
 					</div>
 	  </div>
 	</body>

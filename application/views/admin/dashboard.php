@@ -105,7 +105,6 @@
                 <div class="col-lg-8">
 
                     <!-- /.panel -->
-                    <a href="<?php echo base_url()?>dashboard/add">Create</a>
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <i class="fa fa-bar-chart-o fa-fw"></i> Daftar Laporan
@@ -151,7 +150,7 @@
                     </div>
 
 
-                    <a href="<?php echo base_url()?>dashboard/add2">Create Warga</a>
+                    <a href="<?php echo base_url()?>register">Tambah Warga</a>
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <i class="fa fa-bar-chart-o fa-fw"></i> Daftar Warga
@@ -162,9 +161,10 @@
                                             <table class="table table-bordered table-hover table-striped">
                                                 <thead>
                                                     <tr>
-                                                      <td>Nomor KTP</td>
+                                                      <td>No. KTP</td>
                                                       <td>Nama Warga</td>
-                                                      <td>Nomor Rumah </td>
+                                                      <td>No. Rumah </td>
+                                                      <td>Status</td>
                                                       <td>Action</td>
                                                     </tr>
                                                 </thead>
@@ -174,6 +174,11 @@
                                                             <td><?php echo $key['no_KTP'] ?></td>
                                                             <td><?php echo $key['nama'] ?></td>
                                                             <td><?php echo $key['nomor_rumah'] ?></td>
+                                                            <td><?php if($key['otoritas']==1){echo "Super Admin";}
+                                                                      else if($key['otoritas']==2){echo "Ketua RT";}
+                                                                      else if($key['otoritas']==3){echo "Pemilik";}
+                                                                      else if($key['otoritas']==4){echo "Penghuni";}?>
+                                                            </td>
                                                             <td>
                                                               <a href="<?php echo base_url() ?>dashboard/update2/<?php echo $key['no_KTP'] ?>">Edit</a> |
                                                               <a href="<?php echo base_url() ?>dashboard/delete2/<?php echo $key['no_KTP'] ?>">Delete</a>
@@ -196,7 +201,7 @@
 
 
 
-                    <a href="<?php echo base_url()?>dashboard/add3">Create Pengumuman</a>
+                    <a href="<?php echo base_url()?>dashboard/add3">Buat Pengumuman</a>
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <i class="fa fa-bar-chart-o fa-fw"></i> Daftar Pengumuman
