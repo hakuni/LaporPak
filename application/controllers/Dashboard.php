@@ -8,15 +8,21 @@ class dashboard extends CI_Controller {
       parent::__construct();
       $this->load->helper(array('form', 'url'));
       $this->load->model('m_grafik');
+      $this->load->model('m_grafik2');
 
   }
 
   public function index()
   {
     $data['data']=$this->m_grafik->get_data_stok();
+    $data['charlapor']=$this->m_grafik2->get_data_charlapor();
     $data['laporan'] = $this->db->get('laporan');
     $data['warga'] = $this->db->get('user');
     $data['infowarga'] = $this->db->get('pengumuman');
+    $data['solve'] = $this->db->query("SELECT COUNT(id_laporan) AS solve FROM laporan WHERE status = 1");
+    $data['unsolve'] = $this->db->query("SELECT COUNT(id_laporan) AS unsolve FROM laporan WHERE status = 0");
+    $data['jmluser'] = $this->db->query("SELECT COUNT(no_KTP) AS jmluser FROM user");
+    $data['jmllaporan'] = $this->db->query("SELECT COUNT(id_laporan) AS jmllaporan FROM laporan");
     $this->load->view('admin/dashboard',$data);
   }
 
@@ -63,6 +69,13 @@ class dashboard extends CI_Controller {
       'deskripsi_pengumuman' => $this->input->post('deskripsi_pengumuman')
     );
     $this->db->insert('pengumuman',$data);
+    redirect('dashboard','refresh');
+  }
+
+  public function update_status($id_laporan=NULL)
+  {
+    $where=array("status"=>1);
+    $this->db->where('id_laporan',$this->uri->segment(3))->update('laporan',$where);
     redirect('dashboard','refresh');
   }
 
@@ -157,6 +170,7 @@ class dashboard extends CI_Controller {
 
     redirect('dashboard','refresh');
   }
+
 
 
 

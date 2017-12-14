@@ -103,10 +103,108 @@ if($this->session->userdata('status')=='login' && $this->session->userdata('otor
             </div>
             <!-- /.row -->
             <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-comments fa-5x"></i>
+                                </div>
+                                <?php $no = 0; foreach ($solve->result_array() as $key): ?>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge"><?php echo $key['solve'] ?></div>
+                                    <div>Teratasi</div>
+                                </div>
+                              <?php endforeach; ?>
+                            </div>
+                        </div>
+                        <a href="#">
+                            <div class="panel-footer">
+                                <span class="pull-left">Jumlah Laporan</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-green">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-tasks fa-5x"></i>
+                                </div>
+                                <?php $no = 0; foreach ($unsolve->result_array() as $key): ?>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge"><?php echo $key['unsolve'] ?></div>
+                                    <div>Belum Teratasi</div>
+                                </div>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+                        <a href="#">
+                            <div class="panel-footer">
+                                <span class="pull-left">Jumlah Laporan</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-yellow">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-shopping-cart fa-5x"></i>
+                                </div>
+                                <?php $no = 0; foreach ($jmllaporan->result_array() as $key): ?>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge"><?php echo $key['jmllaporan'] ?></div>
+                                    <div>Total</div>
+                                </div>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+                        <a href="#">
+                            <div class="panel-footer">
+                                <span class="pull-left">Jumlah Laporan</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="panel panel-red">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-xs-3">
+                                    <i class="fa fa-support fa-5x"></i>
+                                </div>
+                                <?php $no = 0; foreach ($jmluser->result_array() as $key): ?>
+                                <div class="col-xs-9 text-right">
+                                    <div class="huge"><?php echo $key['jmluser'] ?></div>
+                                    <div>Total</div>
+                                </div>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+                        <a href="#">
+                            <div class="panel-footer">
+                                <span class="pull-left">Jumlah Warga</span>
+                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
 
             <!-- /.row -->
             <div class="row">
-                <div class="col-lg-8">
+                <div class="col-lg-12">
 
                     <!-- /.panel -->
                     <div class="panel panel-default">
@@ -124,6 +222,7 @@ if($this->session->userdata('status')=='login' && $this->session->userdata('otor
                                                       <td>Topik Laporan</td>
                                                       <td>Deskripsi Laporan</td>
                                                       <td>Action</td>
+                                                      <td>Status</td>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -136,6 +235,12 @@ if($this->session->userdata('status')=='login' && $this->session->userdata('otor
                                                             <td>
                                                               <a href="<?php echo base_url() ?>detail/index/<?php echo $key['id_laporan'] ?>">Read</a> |
                                                               <a href="<?php echo base_url() ?>dashboard/delete/<?php echo $key['id_laporan'] ?>">Delete</a>
+                                                            </td>
+                                                            <td>
+                                                              <?php if($key['status']==0){  ?>
+                                                              <a href="<?php echo base_url().'Dashboard/update_status/'.$key['id_laporan']?>">Solve This</a>
+                                                            <?php } else{echo "Solved";} ?>
+
                                                             </td>
                                                           </tr>
                                                   <?php endforeach; ?>
@@ -255,8 +360,10 @@ if($this->session->userdata('status')=='login' && $this->session->userdata('otor
                     ?>
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                          <i class="fa fa-bar-chart-o fa-fw"></i> Grafik Jumlah User
-                            <canvas id="canvas" width="650" height="280"></canvas>
+                          <i class="fa fa-bar-chart-o fa-fw"></i> Grafik Jumlah Warga
+                        </div>
+                        <div class="panel-heading">
+                            <canvas id="canvas" width="1030" height="280"></canvas>
                             <!-- <canvas id="canvas" width="700" height="280"></canvas> -->
                             <script type="text/javascript" src="<?php echo base_url().'assets/chartjs/chart.min.js'?>"></script>
                             <script>
@@ -284,6 +391,7 @@ if($this->session->userdata('status')=='login' && $this->session->userdata('otor
                             </script>
                           </div>
                         </div>
+
                 </div>
 
 
