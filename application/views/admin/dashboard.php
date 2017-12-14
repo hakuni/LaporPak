@@ -108,7 +108,7 @@ if($this->session->userdata('status')=='login' && $this->session->userdata('otor
                         <div class="panel-heading">
                             <div class="row">
                                 <div class="col-xs-3">
-                                    <i class="fa fa-file-text fa-5x"></i>
+                                    <i class="fa fa-check fa-5x"></i>
                                 </div>
                                 <?php $no = 0; foreach ($solve->result_array() as $key): ?>
                                 <div class="col-xs-9 text-right">
@@ -132,7 +132,7 @@ if($this->session->userdata('status')=='login' && $this->session->userdata('otor
                         <div class="panel-heading">
                             <div class="row">
                                 <div class="col-xs-3">
-                                    <i class="fa fa-file-text fa-5x"></i>
+                                    <i class="fa fa-times fa-5x"></i>
                                 </div>
                                 <?php $no = 0; foreach ($unsolve->result_array() as $key): ?>
                                 <div class="col-xs-9 text-right">
