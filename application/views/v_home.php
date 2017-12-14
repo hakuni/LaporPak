@@ -58,7 +58,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<link rel="stylesheet" href="<?php echo base_url()?>assets/home/css/owl.carousel.min.css">
 	<link rel="stylesheet" href="<?php echo base_url()?>assets/home/css/owl.theme.default.min.css">
 	<!-- Theme style  -->
-	<link rel="stylesheet" href="<?php echo base_url()?>assets/home/css/style.css">
+	<link rel="stylesheet" href="<?php echo base_url()?>assets/home/css/style2.css">
 
 	<!-- Modernizr JS -->
 	<script src="<?php echo base_url()?>assets/home/js/modernizr-2.6.2.min.js"></script>
@@ -77,17 +77,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<h1><a href="<?php echo base_url()?>">LaporPak</a></h1>
 				<nav role="navigation">
 					<ul>
-						<?php if($this->session->userdata('otoritas')==1 || $this->session->userdata('otoritas')==2){ ?>
-						<li><a href="<?php echo base_url()?>Dashboard">Dashboard</a></li> <?php } ?>
 						<li><a href="<?php echo base_url()?>list_laporan">Laporan</a></li>
-						<li><a href="#">About</a></li>
-						<li><a href="#">Contact</a></li>
 						<?php if($this->session->userdata('status') != "login"){ ?>
 						<li class="cta"><a href="<?php echo base_url()?>login">Login</a></li>
-						<?php }else{ ?>
-						<li><a href="<?php echo base_url()?>profile">Profil</a></li>
+						<?php } else {
+							if($this->session->userdata('otoritas')==1 || $this->session->userdata('otoritas')==2){ ?>
+									<li><a href="<?php echo base_url()?>Dashboard">Dashboard</a></li> <?php } else {?>
+						<li><a href="<?php echo base_url().'profile/index/'.$this->session->userdata('no_KTP')?>">Profil</a></li> <?php } ?>
 						<li class="cta"><a href="<?php echo base_url()?>login/logout">Logout</a></li>
-						<?php	} ?>
+					<?php	} ?>
 					</ul>
 				</nav>
 			</div>
@@ -160,17 +158,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<?php } else{
 							foreach($user as $data){  ?>
 			<div class="row">
-
 				<div class="col-md-6 col-sm-6 animate-box">
 					<a href="<?php echo base_url()?>detail/index/<?php echo $data->id_laporan;?>" class="item-grid">
 						<div class="image" style="background-image: url(<?php echo base_url();?>gambar/<?php echo $data->foto;?>)"></div>
 						<div class="v-align">
-							<div class="v-align-middle">
-								<h3 class="title"><?php echo $data->topik; ?></h3>
-								<h5 class="date"><span><?php echo $data->tanggal; ?></span>
-								<h5><?php echo substr($data->laporan,0,50)." ..."; ?></h5>
-								<p align="right"><b><?php echo "Read More"?></b></p>
-							</div>
+								<h3><?php echo $data->topik; ?></h3>
+								<h5><span><?php echo $data->tanggal; ?></span>
+								<p><?php echo substr($data->laporan,0,50)." ..."; ?></p>
+								<h5 align="right"><b><?php echo "Read More"?></b></h5>
 						</div>
 					</a>
 				</div>

@@ -72,7 +72,7 @@ if($this->session->userdata('status')=='login'){ ?>
                 <?php } ?>
                   <div class="form-group">
                       <input type="submit" name="submit" class="btn btn-success btn-lg" value="Simpan">
-                      <a href="<?php echo base_url().'profile'?>"><input type="button" name="submit" class="btn btn-fail btn-lg" value="Batal"></a>
+                      <a href="<?php echo base_url().'profile/index/'.$this->session->userdata('no_KTP')?>"><input type="button" name="submit" class="btn btn-fail btn-lg" value="Batal"></a>
                   </div>
           </div>
       </div>

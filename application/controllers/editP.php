@@ -20,7 +20,7 @@ class EditP extends CI_Controller {
             if($this->m_edit->validation_up()){
                 $this->m_edit->update_profile(); ?>
                 <script language="javascript">alert("Berhasil Edit Profil");</script>
-                <script>document.location.href='<?php echo base_url().'profile'?>';</script>
+                <script>document.location.href='<?php echo base_url().'profile/index/'.$this->session->userdata('no_KTP')?>';</script>
             <?php
             }
             $data['user'] = $this->m_edit->ambil('user',$this->session->userdata('no_KTP'));
@@ -46,7 +46,7 @@ class EditP extends CI_Controller {
       if($this->m_editP->validation_pass()){
           $this->m_editP->update_pass(); ?>
           <script language="javascript">alert("Berhasil Edit Password");</script>
-          <script>document.location.href='<?php echo base_url().'profile'?>';</script>
+          <script>document.location.href='<?php echo base_url().'profile/index/'.$this->session->userdata('no_KTP')?>';</script>
       <?php
       }
       else{

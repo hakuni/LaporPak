@@ -14,7 +14,7 @@ class dashboard extends CI_Controller {
 
   public function index()
   {
-    $data['data']=$this->m_grafik->get_data_stok();
+    $data['data']=$this->m_grafik->get_data_user();
     $data['charlapor']=$this->m_grafik2->get_data_charlapor();
     $data['laporan'] = $this->db->get('laporan');
     $data['warga'] = $this->db->get('user');

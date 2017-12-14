@@ -52,7 +52,7 @@
 	<!-- Flexslider  -->
 	<link rel="stylesheet" href="<?php echo base_url()?>assets/home/css/flexslider.css">
 	<!-- Theme style  -->
-	<link rel="stylesheet" href="<?php echo base_url()?>assets/home/css/style.css">
+	<link rel="stylesheet" href="<?php echo base_url()?>assets/home/css/style2.css">
 
 	<!-- Modernizr JS -->
 	<script src="<?php echo base_url()?>assets/home/js/modernizr-2.6.2.min.js"></script>
@@ -72,36 +72,42 @@
 				<h1><a href="<?php echo base_url()?>">LaporPak</a></h1>
 				<nav role="navigation">
 					<ul>
-						<?php if($this->session->userdata('otoritas')==1 || $this->session->userdata('otoritas')==2){ ?>
-						<li><a href="<?php echo base_url()?>Dashboard">Dashboard</a></li> <?php } ?>
 						<li><a href="<?php echo base_url()?>list_laporan">Laporan</a></li>
-						<li><a href="#">About</a></li>
-						<li><a href="#">Contact</a></li>
 						<?php if($this->session->userdata('status') != "login"){ ?>
 						<li class="cta"><a href="<?php echo base_url()?>login">Login</a></li>
-						<?php }else{ ?>
-						<li><a href="<?php echo base_url()?>profile">Profil</a></li>
+						<?php } else {
+							if($this->session->userdata('otoritas')==1 || $this->session->userdata('otoritas')==2){ ?>
+									<li><a href="<?php echo base_url()?>Dashboard">Dashboard</a></li> <?php } else {?>
+						<li><a href="<?php echo base_url().'profile/index/'.$this->session->userdata('no_KTP')?>">Profil</a></li> <?php } ?>
 						<li class="cta"><a href="<?php echo base_url()?>login/logout">Logout</a></li>
-						<?php	} ?>
+					<?php	} ?>
+					</ul>
 					</ul>
 				</nav>
 			</div>
 		</div>
 	</header>
-
-	<div class="container">
-    <?php foreach($details as $data){ ?>
-			<div class="col-md-6 col-md-push-3 animate-box">
-				<figure>
-					<img src="<?php echo base_url().'gambar/'.$data->foto;?>" alt="Free HTML5 Template" class="img-responsive">
-				</figure>
+	<div id="fh5co-blog-section" class="fh5co-light-grey-section">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6 col-md-offset-3 text-center fh5co-heading animate-box">
+						<h2>Detail Laporan Warga</h2>
+					</div>
+				</div>
+				<div class="row">
+		    <?php foreach($details as $data){ ?>
+						<div class="col-md-6 col-md-offset-3 animate-box">
+								<figure>
+									<img src="<?php echo base_url().'gambar/'.$data->foto;?>">
+								</figure>
+							<br/>
+								<b><h1><?php echo $data->topik;?></h1></b>
+				        <h5 style="color: grey"><span><?php echo $data->tanggal; ?></span></h5><br/>
+								<h4><?php echo $data->laporan;?></h4>
+			      <?php } ?>
+					</div>
+				</div>
 			</div>
-			<div class="col-md-10 col-md-push-1 animate-box">
-				<h2><?php echo $data->topik;?></h2>
-        <h5 class="date"><span><?php echo $data->tanggal; ?></span></h5>
-				<p><?php echo $data->laporan;?></p>
-			</div>
-      <?php } ?>
 		</div>
 
 	<footer id="fh5co-footer" role="contentinfo">
