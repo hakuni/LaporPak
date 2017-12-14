@@ -363,9 +363,12 @@ if($this->session->userdata('status')=='login' && $this->session->userdata('otor
                           <i class="fa fa-bar-chart-o fa-fw"></i> Grafik Jumlah Warga
                         </div>
                         <div class="panel-heading">
+                          <h5>Jumlah<br>Warga</h5>
+
                             <canvas id="canvas" width="1030" height="280"></canvas>
                             <!-- <canvas id="canvas" width="700" height="280"></canvas> -->
                             <script type="text/javascript" src="<?php echo base_url().'assets/chartjs/chart.min.js'?>"></script>
+
                             <script>
 
                                     var lineChartData = {
@@ -387,8 +390,8 @@ if($this->session->userdata('status')=='login' && $this->session->userdata('otor
                                     }
 
                                 var myLine = new Chart(document.getElementById("canvas").getContext("2d")).Line(lineChartData);
-
                             </script>
+                            <center><h5>Bulan</h5></center>
                           </div>
                         </div>
 
