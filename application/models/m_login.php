@@ -34,7 +34,7 @@ class M_login extends CI_Model {
       $data_session = array('nama'=>$array['nama'], 'no_KTP'=>$array['no_KTP'], 'otoritas'=>$array['otoritas'], 'status'=>"login");
 
     foreach($data2->result_array() as $array)
-      $data_session = array('nama'=>$array['nama'], 'no_KTP'=>$array['no_KTP'], 'otoritas'=>$array['otoritas'], 'status'=>"login");
+      $data_session = array('nama'=>$array['nama'], 'no_KTP'=>$array['no_KTP'], 'nomor_rumah'=>$array['nomor_rumah'], 'otoritas'=>$array['otoritas'], 'status'=>"login");
 
     $this->session->set_userdata($data_session);
   }

@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-if($this->session->userdata('status')=='login'){ ?>
+if($this->session->userdata('status')=='login' && $this->session->userdata('otoritas')!=4){ ?>
 
   <!DOCTYPE html>
   <html>
@@ -23,7 +23,11 @@ if($this->session->userdata('status')=='login'){ ?>
               <form action="<?php echo base_url(). 'register/action_input'; ?>" method="post">
                   <div class="form-group">
                       <label for="no_rmh">No Rumah:</label>
+                      <?php if($this->session->userdata('otoritas')==3){ ?>
+                      <input name="no_rmh" required type="number" class="form-control" maxlength="3"  value="<?php $this->session->userdata('nomor_rumah') ?>">
+                    <?php } else { ?>
                       <input name="no_rmh" required type="number" class="form-control" maxlength="3"  placeholder="Masukan Nomor Rumah">
+                    <?php } ?>
                   </div>
                   <div class="form-group">
                       <label for="username">Nomor KTP:</label>
@@ -62,7 +66,10 @@ if($this->session->userdata('status')=='login'){ ?>
                   </div>
                   <div class="form-group">
                       <input type="submit" name="submit" class="btn btn-success btn-lg" value="Tambah">
+                      <?php if($this->session->userdata('otoritas')>2){ ?>
                       <a href="<?php echo base_url().'profile/index/'.$this->session->userdata('no_KTP')?>"><input type="button" name="submit" class="btn btn-fail btn-lg" value="Batal"></a>
+                    <?php } else { ?>
+                      <a href="<?php echo base_url().'Dashboard'?>"><input type="button" name="submit" class="btn btn-fail btn-lg" value="Batal"></a> <?php } ?>
                   </div>
               </form>
           </div>

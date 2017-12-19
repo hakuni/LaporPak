@@ -77,7 +77,10 @@ if($this->session->userdata('status')=='login' && $this->session->userdata('otor
                             <a href="#"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
-                            <a href="<?php echo base_url()?>"><i class="fa fa-dashboard fa-fw"></i> Home</a>
+                            <a href="<?php echo base_url()?>"><i class="fa fa-home fa-fw"></i> Home</a>
+                        </li>
+                        <li>
+                            <a href="<?php echo base_url()?>login/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
 
                                     </ul>
@@ -118,10 +121,8 @@ if($this->session->userdata('status')=='login' && $this->session->userdata('otor
                               <?php endforeach; ?>
                             </div>
                         </div>
-                        <a href="#">
                             <div class="panel-footer">
                                 <span class="pull-left">Jumlah Laporan</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
                             </div>
                         </a>
@@ -142,13 +143,10 @@ if($this->session->userdata('status')=='login' && $this->session->userdata('otor
                                 <?php endforeach; ?>
                             </div>
                         </div>
-                        <a href="#">
                             <div class="panel-footer">
                                 <span class="pull-left">Jumlah Laporan</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
                             </div>
-                        </a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
@@ -166,13 +164,10 @@ if($this->session->userdata('status')=='login' && $this->session->userdata('otor
                                 <?php endforeach; ?>
                             </div>
                         </div>
-                        <a href="#">
                             <div class="panel-footer">
                                 <span class="pull-left">Jumlah Laporan</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
                             </div>
-                        </a>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-6">
@@ -190,13 +185,10 @@ if($this->session->userdata('status')=='login' && $this->session->userdata('otor
                                 <?php endforeach; ?>
                             </div>
                         </div>
-                        <a href="#">
                             <div class="panel-footer">
                                 <span class="pull-left">Jumlah Warga</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                                 <div class="clearfix"></div>
                             </div>
-                        </a>
                     </div>
                 </div>
             </div>
@@ -280,9 +272,9 @@ if($this->session->userdata('status')=='login' && $this->session->userdata('otor
                                                 <tbody>
                                                     <?php foreach ($warga->result_array() as $key): ?>
                                                           <tr>
-                                                            <td><?php echo $key['no_KTP'] ?></td>
-                                                            <td><?php echo $key['nama'] ?></td>
-                                                            <td><?php echo $key['nomor_rumah'] ?></td>
+                                                            <td><a href="<?php echo base_url().'Dashboard/bio/'.$key['no_KTP']?>"><?php echo $key['no_KTP'] ?></a></td>
+                                                            <td><a href="<?php echo base_url().'Dashboard/bio/'.$key['no_KTP']?>"><?php echo $key['nama'] ?></a></td>
+                                                            <td><a href="<?php echo base_url().'Dashboard/rumah/'.$key['nomor_rumah']?>"><?php echo $key['nomor_rumah'] ?></a></td>
                                                             <td><?php if($key['otoritas']==1){echo "Super Admin";}
                                                                       else if($key['otoritas']==2){echo "Ketua RT";}
                                                                       else if($key['otoritas']==3){echo "Pemilik";}

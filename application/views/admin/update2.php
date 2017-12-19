@@ -11,9 +11,11 @@
     <?php foreach ($warga->result() as $key): ?>
       <form action="<?php echo base_url();?>dashboard/action_update2/<?php echo $key->no_KTP ?>"method="post">
         <input type="text" name="nama" placeholder="Masukan Nama"value=<?php echo $key->nama?>> <br>
-        <input type="text" name="nomor_rumah" placeholder="Masukan Nomor Rumah"value=<?php echo $key->nomor_rumah ?>> <br><br>
+        <input type="number" name="nomor_rumah" placeholder="Masukan Nomor Rumah"value=<?php echo $key->nomor_rumah ?>> <br><br>
         <input type="submit" value="Save">
       </form>
     <?php endforeach; ?>
+  </br>
+      <a href="<?php echo base_url().'Dashboard'?>"><button>Batal</button></a>
   </body>
 </html>

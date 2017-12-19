@@ -14,6 +14,8 @@
         <input type="text" name="deskripsi_pengumuman" placeholder="Masukan Deskripsi Pengumuman"value=<?php echo $key->deskripsi_pengumuman ?>> <br><br>
         <input type="submit" value="Save">
       </form>
+    </br>
+    <a href="<?php echo base_url().'Dashboard'?>"><button>Batal</button></a>
     <?php endforeach; ?>
   </body>
 </html>

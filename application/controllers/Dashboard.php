@@ -16,14 +16,30 @@ class dashboard extends CI_Controller {
   {
     $data['data']=$this->m_grafik->get_data_user();
     $data['charlapor']=$this->m_grafik2->get_data_charlapor();
-    $data['laporan'] = $this->db->get('laporan');
-    $data['warga'] = $this->db->get('user');
-    $data['infowarga'] = $this->db->get('pengumuman');
+    $data['laporan'] = $this->db->order_by('tanggal','DESC')->get('laporan');
+    $data['warga'] = $this->db->order_by('nomor_rumah', 'ASC')->get('user');
+    $data['infowarga'] = $this->db->order_by('create_when', 'DESC')->get('pengumuman');
     $data['solve'] = $this->db->query("SELECT COUNT(id_laporan) AS solve FROM laporan WHERE status = 1");
     $data['unsolve'] = $this->db->query("SELECT COUNT(id_laporan) AS unsolve FROM laporan WHERE status = 0");
     $data['jmluser'] = $this->db->query("SELECT COUNT(no_KTP) AS jmluser FROM user");
     $data['jmllaporan'] = $this->db->query("SELECT COUNT(id_laporan) AS jmllaporan FROM laporan");
     $this->load->view('admin/dashboard',$data);
+  }
+
+  public function rumah(){
+    $where = array('nomor_rumah'=>$this->uri->segment(3));
+    $dt['x'] = $this->db->order_by('otoritas','ASC')->where('nomor_rumah',$this->uri->segment(3))->get('user')->result();
+    $this->load->view('admin/v_rumah',$dt);
+  }
+
+  public function bio(){
+    $where = array('no_KTP'=>$this->uri->segment(3));
+    $data1 = $this->db->get_where('user',$where)->result();
+    $dt['warga'] = $data1;
+    foreach($data1 as $d)
+    $where2 = array('nomor_rumah'=>$d->nomor_rumah);
+    $dt['rumah'] = $this->db->get_where('rumah',$where2)->result();
+    $this->load->view('admin/v_biodata',$dt);
   }
 
   public function add()

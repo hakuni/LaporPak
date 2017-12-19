@@ -13,5 +13,7 @@
       <input type="text" name="deskripsi_pengumuman" placeholder="Masukan deskripsi pengumuman "><br><br>
       <input type="submit" value="Save">
     </form>
+  </br>
+    <a href="<?php echo base_url().'Dashboard'?>"><button>Batal</button></a>
   </body>
 </html>

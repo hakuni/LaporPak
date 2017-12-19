@@ -11,6 +11,6 @@ class M_home extends CI_Model {
   }
 
   function ambil_p($table){
-    return $this->db->get($table)->result();
+    return $this->db->limit('1')->order_by('create_when', 'DESC')->get($table)->result();
   }
 }
